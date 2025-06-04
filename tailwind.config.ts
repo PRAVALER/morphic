@@ -147,12 +147,17 @@ const config = {
   			'slide-in-right': 'slide-in-right 0.2s ease-out',
   			'slide-out-right': 'slide-out-right 0.2s ease-out'
   		},
-  		fontFamily: {
-  			sans: [
-  				'var(--font-sans)',
-                    ...fontFamily.sans
-                ]
-  		}
+		fontFamily: {
+  		//fontFamily: {
+  		//	sans: [
+  		//		'var(--font-sans)',
+        //            ...fontFamily.sans
+        //        ]
+	  	// Use o nome definido no font-family do @font-face
+			sans: ['PravalerDisplayRegular', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+			// Se quiser usar a semi-bold em algum lugar específico, pode criar um utilitário:
+			'pravaler-semibold': ['PravalerDisplaySemiBold', 'sans-serif'],
+		}
   	}
   },
   plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')]

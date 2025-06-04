@@ -113,3 +113,22 @@
     @apply bg-background text-foreground;
   }
 }
+
+@font-face {
+  font-family: 'PravalerDisplayRegular';
+  src: url('/fonts/display/PravalerDisplay-Regular.woff2') format('woff2'),
+       url('/fonts/display/PravalerDisplay-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PravalerDisplaySemiBold';
+  src: url('/fonts/display/PravalerDisplay-SemiBold.woff2') format('woff2'),
+       url('/fonts/display/PravalerDisplay-SemiBold.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+

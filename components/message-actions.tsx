@@ -33,7 +33,7 @@ export function MessageActions({
 
   async function handleCopy() {
     await navigator.clipboard.writeText(message)
-    toast.success('Message copied to clipboard')
+    toast.success('Mensagem copiada para a área de transferência')
   }
 
   return (
@@ -50,6 +50,7 @@ export function MessageActions({
         size="icon"
         onClick={handleCopy}
         className="rounded-full"
+        aria-label="Copiar mensagem"
       >
         <Copy size={14} />
       </Button>

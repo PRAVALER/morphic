@@ -1,9 +1,9 @@
 'use client'
 
 import {
-  SidebarGroup,
-  SidebarGroupLabel,
-  SidebarMenu
+    SidebarGroup,
+    SidebarGroupLabel,
+    SidebarMenu
 } from '@/components/ui/sidebar'
 import { Chat } from '@/lib/types'
 import { useCallback, useEffect, useRef, useState, useTransition } from 'react'
@@ -32,7 +32,7 @@ export function ChatHistoryClient() {
     try {
       const response = await fetch(`/api/chats?offset=0&limit=20`)
       if (!response.ok) {
-        throw new Error('Failed to fetch initial chat history')
+        throw new Error('Falha ao carregar histórico inicial')
       }
       const { chats: newChats, nextOffset: newNextOffset } =
         (await response.json()) as ChatPageResponse
@@ -40,8 +40,8 @@ export function ChatHistoryClient() {
       setChats(newChats)
       setNextOffset(newNextOffset)
     } catch (error) {
-      console.error('Failed to load initial chats:', error)
-      toast.error('Failed to load chat history.')
+      console.error('Falha ao carregar chats iniciais:', error)
+      toast.error('Falha ao carregar histórico.')
       setNextOffset(null)
     } finally {
       setIsLoading(false)
@@ -71,7 +71,7 @@ export function ChatHistoryClient() {
     try {
       const response = await fetch(`/api/chats?offset=${nextOffset}&limit=20`)
       if (!response.ok) {
-        throw new Error('Failed to fetch more chat history')
+        throw new Error('Falha ao carregar mais histórico')
       }
       const { chats: newChats, nextOffset: newNextOffset } =
         (await response.json()) as ChatPageResponse
@@ -79,8 +79,8 @@ export function ChatHistoryClient() {
       setChats(prevChats => [...prevChats, ...newChats])
       setNextOffset(newNextOffset)
     } catch (error) {
-      console.error('Failed to load more chats:', error)
-      toast.error('Failed to load more chat history.')
+      console.error('Falha ao carregar mais chats:', error)
+      toast.error('Falha ao carregar mais histórico.')
       setNextOffset(null)
     } finally {
       setIsLoading(false)
@@ -115,14 +115,14 @@ export function ChatHistoryClient() {
     <div className="flex flex-col flex-1 h-full">
       <SidebarGroup>
         <div className="flex items-center justify-between w-full">
-          <SidebarGroupLabel className="p-0">History</SidebarGroupLabel>
+          <SidebarGroupLabel className="p-0">Histórico</SidebarGroupLabel>
           <ClearHistoryAction empty={isHistoryEmpty} />
         </div>
       </SidebarGroup>
       <div className="flex-1 overflow-y-auto mb-2 relative">
         {isHistoryEmpty && !isPending ? (
           <div className="px-2 text-foreground/30 text-sm text-center py-4">
-            No search history
+            Nenhum histórico de busca
           </div>
         ) : (
           <SidebarMenu>

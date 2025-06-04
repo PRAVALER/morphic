@@ -19,10 +19,10 @@ export const RetryButton: React.FC<RetryButtonProps> = ({
       variant="ghost"
       size="icon"
       onClick={() => reload()}
-      aria-label={`Retry from message ${messageId}`}
+      aria-label={`Tentar novamente a partir da mensagem ${messageId}`}
     >
       <RotateCcw className="w-4 h-4" />
-      <span className="sr-only">Retry</span>
+      <span className="sr-only">Tentar novamente</span>
     </Button>
   )
 }

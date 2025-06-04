@@ -188,11 +188,11 @@ export function QuestionConfirmation({
           <div className="flex justify-end space-x-2">
             <Button type="button" variant="outline" onClick={handleSkip}>
               <SkipForward size={16} className="mr-1" />
-              Skip
+              Pular
             </Button>
             <Button type="submit" disabled={isButtonDisabled}>
               <ArrowRight size={16} className="mr-1" />
-              Send
+              Enviar
             </Button>
           </div>
         </form>

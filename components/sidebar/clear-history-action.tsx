@@ -1,21 +1,21 @@
 'use client'
 
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger
 } from '@/components/ui/alert-dialog'
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import { SidebarGroupAction } from '@/components/ui/sidebar'
 import { Spinner } from '@/components/ui/spinner'
@@ -35,7 +35,7 @@ export function ClearHistoryAction({ empty }: ClearHistoryActionProps) {
   const onClear = () =>
     start(async () => {
       const res = await clearChats()
-      res?.error ? toast.error(res.error) : toast.success('History cleared')
+      res?.error ? toast.error(res.error) : toast.success('Histórico limpo')
       setOpen(false)
       window.dispatchEvent(new CustomEvent('chat-history-updated'))
     })
@@ -45,7 +45,7 @@ export function ClearHistoryAction({ empty }: ClearHistoryActionProps) {
       <DropdownMenuTrigger asChild>
         <SidebarGroupAction disabled={empty} className="static size-7 p-1">
           <MoreHorizontal size={16} />
-          <span className="sr-only">History Actions</span>
+          <span className="sr-only">Ações do Histórico</span>
         </SidebarGroupAction>
       </DropdownMenuTrigger>
 
@@ -55,24 +55,24 @@ export function ClearHistoryAction({ empty }: ClearHistoryActionProps) {
             <DropdownMenuItem
               disabled={empty || isPending}
               className="gap-2 text-destructive focus:text-destructive"
-              onSelect={event => event.preventDefault()} // Prevent closing dropdown
+              onSelect={event => event.preventDefault()}
             >
-              <Trash2 size={14} /> Clear History
+              <Trash2 size={14} /> Limpar Histórico
             </DropdownMenuItem>
           </AlertDialogTrigger>
 
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+              <AlertDialogTitle>Tem certeza absoluta?</AlertDialogTitle>
               <AlertDialogDescription>
-                This action cannot be undone. It will permanently delete your
-                history.
+                Esta ação não pode ser desfeita. Isso excluirá permanentemente seu
+                histórico.
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel disabled={isPending}>Cancel</AlertDialogCancel>
+              <AlertDialogCancel disabled={isPending}>Cancelar</AlertDialogCancel>
               <AlertDialogAction disabled={isPending} onClick={onClear}>
-                {isPending ? <Spinner /> : 'Clear'}
+                {isPending ? <Spinner /> : 'Limpar'}
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>

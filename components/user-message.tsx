@@ -61,10 +61,10 @@ export const UserMessage: React.FC<UserMessageProps> = ({
             />
             <div className="flex justify-end gap-2">
               <Button variant="secondary" size="sm" onClick={handleCancelClick}>
-                Cancel
+                Cancelar
               </Button>
               <Button size="sm" onClick={handleSaveClick}>
-                Save
+                Salvar
               </Button>
             </div>
           </div>

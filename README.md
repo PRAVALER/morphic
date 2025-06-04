@@ -28,7 +28,7 @@ An AI-powered search engine with a generative UI.
 
 ### Authentication
 
-- User authentication powered by [Supabase Auth](https://supabase.com/docs/guides/auth)
+- User authentication powered by [Azure AD](https://learn.microsoft.com/en-us/azure/active-directory/develop/) via NextAuth.js
 - Supports Email/Password sign-up and sign-in
 - Supports Social Login with Google
 
@@ -81,7 +81,7 @@ Models are configured in `public/config/models.json`. Each model requires its co
 
 ### Authentication & Authorization (Updated Category)
 
-- [Supabase](https://supabase.com/) - User authentication and backend services
+- [Azure AD](https://learn.microsoft.com/en-us/azure/active-directory/develop/) - User authentication via Microsoft accounts
 
 ### AI & Search
 

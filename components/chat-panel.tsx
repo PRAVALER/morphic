@@ -118,7 +118,7 @@ export function ChatPanel({
         <div className="mb-10 flex flex-col items-center gap-4">
           <IconLogo className="size-12 text-muted-foreground" />
           <p className="text-center text-3xl font-semibold">
-            How can I help you today?
+            Como posso ajudar você hoje?
           </p>
         </div>
       )}
@@ -134,7 +134,7 @@ export function ChatPanel({
             size="icon"
             className="absolute -top-10 right-4 z-20 size-8 rounded-full shadow-md"
             onClick={handleScrollToBottom}
-            title="Scroll to bottom"
+            title="Rolar para baixo"
           >
             <ChevronDown size={16} />
           </Button>
@@ -149,7 +149,7 @@ export function ChatPanel({
             tabIndex={0}
             onCompositionStart={handleCompositionStart}
             onCompositionEnd={handleCompositionEnd}
-            placeholder="Ask a question..."
+            placeholder="Faça uma pergunta..."
             spellCheck={false}
             value={input}
             disabled={isLoading || isToolInvocationInProgress()}

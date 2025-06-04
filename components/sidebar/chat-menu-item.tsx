@@ -1,26 +1,26 @@
 'use client'
 
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger
 } from '@/components/ui/alert-dialog'
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 import {
-  SidebarMenuAction,
-  SidebarMenuButton,
-  SidebarMenuItem
+    SidebarMenuAction,
+    SidebarMenuButton,
+    SidebarMenuItem
 } from '@/components/ui/sidebar'
 import { Chat } from '@/lib/types'
 import { MoreHorizontal, Trash2 } from 'lucide-react'
@@ -41,10 +41,10 @@ const formatDateWithTime = (date: Date | string) => {
   yesterday.setDate(yesterday.getDate() - 1)
 
   const formatTime = (date: Date) => {
-    return date.toLocaleString('en-US', {
+    return date.toLocaleString('pt-BR', {
       hour: '2-digit',
       minute: '2-digit',
-      hour12: true
+      hour12: false
     })
   }
 
@@ -53,21 +53,21 @@ const formatDateWithTime = (date: Date | string) => {
     parsedDate.getMonth() === now.getMonth() &&
     parsedDate.getFullYear() === now.getFullYear()
   ) {
-    return `Today, ${formatTime(parsedDate)}`
+    return `Hoje, ${formatTime(parsedDate)}`
   } else if (
     parsedDate.getDate() === yesterday.getDate() &&
     parsedDate.getMonth() === yesterday.getMonth() &&
     parsedDate.getFullYear() === yesterday.getFullYear()
   ) {
-    return `Yesterday, ${formatTime(parsedDate)}`
+    return `Ontem, ${formatTime(parsedDate)}`
   } else {
-    return parsedDate.toLocaleString('en-US', {
+    return parsedDate.toLocaleString('pt-BR', {
       year: 'numeric',
       month: '2-digit',
       day: '2-digit',
       hour: '2-digit',
       minute: '2-digit',
-      hour12: true
+      hour12: false
     })
   }
 }
@@ -87,23 +87,22 @@ export function ChatMenuItem({ chat }: ChatMenuItemProps) {
 
         if (!res.ok) {
           const errorData = await res.json()
-          throw new Error(errorData.error || 'Failed to delete chat')
+          throw new Error(errorData.error || 'Falha ao excluir chat')
         }
 
-        toast.success('Chat deleted')
-        setIsMenuOpen(false) // Close menu on success
-        setDialogOpen(false) // Close dialog on success
+        toast.success('Chat excluído')
+        setIsMenuOpen(false)
+        setDialogOpen(false)
 
-        // If deleting the currently active chat, navigate home
         if (isActive) {
           router.push('/')
         }
         window.dispatchEvent(new CustomEvent('chat-history-updated'))
       } catch (error) {
-        console.error('Failed to delete chat:', error)
-        toast.error((error as Error).message || 'Failed to delete chat')
-        setIsMenuOpen(false) // Close menu on error
-        setDialogOpen(false) // Close dialog on error
+        console.error('Falha ao excluir chat:', error)
+        toast.error((error as Error).message || 'Falha ao excluir chat')
+        setIsMenuOpen(false)
+        setDialogOpen(false)
       }
     })
   }
@@ -135,7 +134,7 @@ export function ChatMenuItem({ chat }: ChatMenuItemProps) {
             ) : (
               <MoreHorizontal size={16} />
             )}
-            <span className="sr-only">Chat Actions</span>
+            <span className="sr-only">Ações do Chat</span>
           </SidebarMenuAction>
         </DropdownMenuTrigger>
         <DropdownMenuContent side="right" align="start">
@@ -146,28 +145,27 @@ export function ChatMenuItem({ chat }: ChatMenuItemProps) {
                 className="gap-2 text-destructive focus:text-destructive"
                 onSelect={e => {
                   e.preventDefault()
-                  // Don't call onDelete directly, just open the dialog
                 }}
               >
                 <Trash2 size={14} />
-                Delete Chat
+                Excluir Chat
               </DropdownMenuItem>
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                <AlertDialogTitle>Tem certeza absoluta?</AlertDialogTitle>
                 <AlertDialogDescription>
-                  This action cannot be undone. This will permanently delete
-                  this chat history.
+                  Esta ação não pode ser desfeita. Isso excluirá permanentemente
+                  o histórico deste chat.
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
                 <AlertDialogCancel disabled={isPending}>
-                  Cancel
+                  Cancelar
                 </AlertDialogCancel>
                 <AlertDialogAction
                   disabled={isPending}
-                  onClick={onDelete} // Call onDelete here
+                  onClick={onDelete}
                   className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
                 >
                   {isPending ? (
@@ -175,7 +173,7 @@ export function ChatMenuItem({ chat }: ChatMenuItemProps) {
                       <Spinner />
                     </div>
                   ) : (
-                    'Delete'
+                    'Excluir'
                   )}
                 </AlertDialogAction>
               </AlertDialogFooter>
